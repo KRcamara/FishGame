@@ -1,21 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
   
-  const width = 800;
-  const height = 600;
+  const width = 600;
+  const height = 400;
 
   let mainFish = document.getElementById("main-fish");
   let scoreValue = document.getElementById("score-value");
   let fishesContainer = document.getElementById("fishes");
   let levelValue = document.getElementById("level-value");
   let mainFishScoreValue = document.getElementById("main-fish-score");
-  let timer = 45; // Tiempo en segundos
-  let gameRunning = true; // Estado del juego
+  let timer = 30; 
+  let gameRunning = true; 
   let timerValue = document.getElementById("timer-value");
-  let mainFishScore = 10;
+  let mainFishScore = 7;
   
 
   mainFish.dataset.score = 5;
-  let score = 5;
+  let score = 0;
 
   function updateScore() {
     scoreValue.innerHTML = score;
@@ -60,9 +60,9 @@ document.addEventListener("DOMContentLoaded", function() {
   function createFish() {
     let fish = document.createElement("div");
     fish.className = "fish";
-    fish.style.left = Math.floor(Math.random() * (width - 30)) + "px";
-    fish.style.top = Math.floor(Math.random() * (height - 30)) + "px";
-    fish.dataset.score = Math.floor(Math.random() * 20) + 2;
+    fish.style.left = Math.floor(Math.random() * ( width - 30)) + "px";
+    fish.style.top = Math.floor(Math.random() * (400 - 50)) + "px";
+    fish.dataset.score = Math.floor(Math.random() * 15) + 2;
     fish.textContent = fish.dataset.score;
     fish.addEventListener("click", handleFishClick);
     fishesContainer.appendChild(fish);
@@ -98,10 +98,10 @@ function updateLevel() {
 
   function checkGameState() {
     if (timer === 0) {
-      if (score >= 150) {
-        alert("¡Has ganado!");
+      if (score >= 500) {
+        alert("!!Felicidades¡¡ ¡Has ganado!");
       } else {
-        alert("¡Has perdido!");
+        alert("!Lo siento¡ ¡Has perdido!");
       }
       gameRunning = false;
       playButton.disabled = false;

@@ -1,55 +1,61 @@
 #game-container {
     position: relative;
-    width: 800px;
-    height: 600px;
-    background-color: rgb(84, 110, 184);
+    top: 5px;
+    width: 500px;
+    height: 400px;
+    
   }
   
   #main-fish {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 110px;
+    height: 70px;
     cursor: pointer;
   }
   
   .fish {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: pink;
+    width: 100px;
+    height: 50px;
+    background-image: url(images/fishsec1.png)
   }
   
   #score {
     position: absolute;
-    top: 10px;
+    top: 450px;
     left: 10px;
-    color: white;
-    font-size: 18px;
+    color: blue;
+    font-size: 25px;
   }
   
   #level {
     position: absolute;
-    top: 30px;
-    left: 10px;
-    color: whitesmoke;
-    font-size: 18px;
+    top: 450px;
+    left: 500px;
+    color: blue;
+    font-size: 25px;
   }
   
   #main-fish-value {
     position: absolute;
     top: 40px;
-    left: 10px;
+    left: 60px;
     color: white;
     font-size: 18px;
   }
 
   #timer {
     position: absolute;
-    top: 50px;
-    left: 10px;
-    color: whitesmoke;
-    font-size: 18px;
-
+    top: 450px;
+    left: 300px;
+    color: blue;
+    font-size: 35px;
   }
   
-  
+  #start-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+  }
