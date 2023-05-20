@@ -98,7 +98,7 @@ function updateLevel() {
 
   function checkGameState() {
     if (timer === 0) {
-      if (score >= 500) {
+      if (score >= 300) {
         alert("!!Felicidades¡¡ ¡Has ganado!");
       } else {
         alert("!Lo siento¡ ¡Has perdido!");
