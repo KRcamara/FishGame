@@ -1,0 +1,123 @@
+document.addEventListener("DOMContentLoaded", function() {
+  
+  const width = 800;
+  const height = 600;
+
+  let mainFish = document.getElementById("main-fish");
+  let scoreValue = document.getElementById("score-value");
+  let fishesContainer = document.getElementById("fishes");
+  let levelValue = document.getElementById("level-value");
+  let mainFishScoreValue = document.getElementById("main-fish-score");
+  let timer = 45; // Tiempo en segundos
+  let gameRunning = true; // Estado del juego
+  let timerValue = document.getElementById("timer-value");
+  let mainFishScore = 10;
+  
+
+  mainFish.dataset.score = 5;
+  let score = 5;
+
+  function updateScore() {
+    scoreValue.innerHTML = score;
+  }
+
+  function updateMainFishScore() {
+    mainFishScoreValue.innerHTML = mainFishScore;
+  }
+  function updateTimer() {
+    timerValue.innerHTML = timer;
+  }
+  
+
+    function moveMainFish(event) {
+    let mouseX = event.clientX - mainFish.offsetWidth / 2;
+    let mouseY = event.clientY - mainFish.offsetHeight / 2;
+    mainFish.style.left = mouseX + "px";
+    mainFish.style.top = mouseY + "px";
+  }
+
+ 
+  function handleFishClick() {
+    if (!gameRunning) {
+      return;
+    }
+    let clickedFishScore = parseInt(this.dataset.score);
+    //let mainFishScore = parseInt(mainFish.dataset.score);
+    if (clickedFishScore <= mainFishScore){
+      score += clickedFishScore;
+      mainFishScore += clickedFishScore;
+      updateScore();
+      updateMainFishScore();
+      fishesContainer.removeChild(this);
+      if (fishesContainer.childElementCount === 0) {
+        nextLevel();
+      }
+     }
+    }
+  
+  
+ 
+  function createFish() {
+    let fish = document.createElement("div");
+    fish.className = "fish";
+    fish.style.left = Math.floor(Math.random() * (width - 30)) + "px";
+    fish.style.top = Math.floor(Math.random() * (height - 30)) + "px";
+    fish.dataset.score = Math.floor(Math.random() * 20) + 2;
+    fish.textContent = fish.dataset.score;
+    fish.addEventListener("click", handleFishClick);
+    fishesContainer.appendChild(fish);
+  }
+
+  
+  for (let i = 0; i < 10; i++) {
+    createFish();
+  }
+
+  
+  document.addEventListener("mousemove", moveMainFish);
+
+let level = 1;
+let fishCount = 5;
+
+function nextLevel() {
+  level++;
+  fishCount += 5;
+  fishesContainer.innerHTML = "";
+  for (let i = 0; i < fishCount; i++) {
+    createFish();
+  }
+  updateLevel();
+}
+
+function updateLevel() {
+  levelValue.innerHTML = level;
+}
+
+  
+  updateScore();
+
+  function checkGameState() {
+    if (timer === 0) {
+      if (score >= 150) {
+        alert("¡Has ganado!");
+      } else {
+        alert("¡Has perdido!");
+      }
+      gameRunning = false;
+      playButton.disabled = false;
+    }
+  }
+   
+  function updateGame() {
+    if (gameRunning) {
+      timer--;
+      updateTimer();
+      checkGameState();
+    }
+  }
+  setInterval(updateGame, 1000);
+
+  
+  
+  
+});
